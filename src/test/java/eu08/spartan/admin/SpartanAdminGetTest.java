@@ -1,6 +1,7 @@
 package eu08.spartan.admin;
 
 import io.restassured.http.ContentType;
+import net.serenitybdd.junit5.SerenityTest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +9,8 @@ import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+
+@SerenityTest
 
 public class SpartanAdminGetTest {
 
