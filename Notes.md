@@ -98,7 +98,7 @@ serenity.project.name=B22 API Report
 serenity.test.root=b22
 9.In order to generate serenity report, we need to use maven goal
 
-if you are using command line: mvn clean verify cmd+enter or ctrl+enter if you dont have maven installed locally
+if you are using command line: mvn clean verify cmd+enter or ctrl+enter if you don't have maven installed locally
 if you are using IntelliJ buttons;
 first click on clean then click on verify
 your report will be generated under target as HTML Report
@@ -109,11 +109,13 @@ your report will be generated under target as HTML Report
     <artifactId>slf4j-simple</artifactId>
     <version>1.7.30</version>
 </dependency>
-We were able to generate test report, however there are no details about the request and response. In order to see the details then we need to use the given() when() then() methods coming from Serenity.
+We were able to generate test report, however there are no details about the request and response. 
+In order to see the details then we need to use the given() when() then() methods coming from Serenity.
 
 Instead of importing rest assured given import,use below
 import static net.serenitybdd.rest.SerenityRest.given;
-From this point on, all details will be picked up by Serenity report, you will see Rest Query button on the individual tests
+From this point on, all details will be picked up by Serenity report, 
+you will see Rest Query button on the individual tests
 The way that assert the response and show it as a steps in Serenity report is using Ensure class (from import net.serenitybdd.rest.Ensure;)
 
         Ensure.that("Status code is 200",validatableResponse -> validatableResponse.statusCode(201) );
