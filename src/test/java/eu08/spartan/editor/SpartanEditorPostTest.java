@@ -39,9 +39,50 @@ public class SpartanEditorPostTest extends SpartanNewBase {
                 .contentType(ContentType.JSON)
                 .body(bodyMap)
                 .log().body()
-                .when()
+        .when()
                 .post("/spartans")
-                .prettyPrint();
+        .then()
+                .log().all();
+
+         /*
+                status code is 201
+                content type is Json
+                success message is A Spartan is Born!
+                id is not null
+                name is correct
+                gender is correct
+                phone is correct
+                check location header ends with newly generated id
+         */
+
+        // status code is 201
+        Ensure.that("status code is 201", vRes -> vRes.statusCode(201));
+
+        //content type is Json
+        Ensure.that("Content type is JSON", vRes -> vRes.contentType(ContentType.JSON));
+
+        // success message is A Spartan is Born!
+        Ensure.that("A Spartan is correct", vR->vR.body("success", is("A Spartan is Born!")));
+
+        // id is not null
+        Ensure.that("id is nut null", vR -> vR.body("data.id", notNullValue()));
+
+        // name is correct
+        Ensure.that("name is correct", vR -> vR.body("data.name", is(bodyMap.get("name"))));
+
+        // gender is correct
+        Ensure.that("Gender is correct", vR -> vR.body("data.gender", is(bodyMap.get("gender"))) );
+
+        // phone is correct
+        Ensure.that("Phone is correct", vR -> vR.body("data.phone", is(bodyMap.get("phone"))) );
+
+        //check location header ends with newly generated id
+        // get id and save
+        String id = lastResponse().jsonPath().getString("data.id");
+
+        Ensure.that("check location header ends with newly generated id",
+                vR->vR.header("Location", endsWith(id)));
+
 
     }
 
