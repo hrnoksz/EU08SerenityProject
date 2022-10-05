@@ -2,8 +2,6 @@ package eu08.spartan.editor;
 import io.restassured.http.ContentType;
 import net.serenitybdd.junit5.SerenityTest;
 import net.serenitybdd.rest.Ensure;
-import net.serenitybdd.rest.SerenityRest;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,8 +13,6 @@ import utilities.SpartanUtil;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.*;
 import static net.serenitybdd.rest.SerenityRest.lastResponse;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -98,7 +94,7 @@ public class SpartanEditorPostTest extends SpartanNewBase {
            {0},{1},{2} --> based on the order you provide as argument.
         */
     @ParameterizedTest(name = "New Spartan {index} - name: {0}")
-    @CsvFileSource(resources = "/SpartanData.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/SpartanDataPOST.csv", numLinesToSkip = 1)
     //numLinesToSkip = 1 is used to skip first row which consists of name, gender and phone
     public void postSpartanWithCsv(String name, String gender, long phone){
 
